@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+.venv/
+venv/
+DJANGO_KONSPEKTY/
+*.pyc
+__pycache__/*
