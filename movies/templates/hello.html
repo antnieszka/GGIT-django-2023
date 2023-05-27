@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Witaj świecie z HTML!</h1>
-{% endblock %}
+<h2>Witaj świecie z HTML!</h2>
+
 <p>
     Aktualny użytkownik to: {{ request.user }}
 </p>
 <p>
     Aktualny czas: {{ time }}
 </p>
-</body>
-</html>
+{% endblock %}

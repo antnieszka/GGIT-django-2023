@@ -5,3 +5,4 @@ venv/
 DJANGO_KONSPEKTY/
 *.pyc
 __pycache__/*
+db.sqlite3

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<p>Witaj: {{ request.user }}</p>
+<p>Ostatnie logowanie {{ request.user.last_login }}</p>
+{% else %}
+<p>Nie zalogowano do filmoteki.</p>
+<a href="{% url 'login' %}">Zaloguj się</a>
+{% endif %}
+
+{% endblock content %}
