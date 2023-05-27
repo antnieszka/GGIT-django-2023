@@ -1,24 +1,32 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Filmoteka</a>
+        <a class="navbar-brand" href="{% url 'hello' %}">
+            <i class="bi bi-collection-play"></i>
+            Filmoteka
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav d-flex w-100">
-                <a class="nav-link" href="{% url 'hello' %}">Witaj świecie</a>
-                <a class="nav-link" href="{% url 'movies_list' %}">Filmy</a>
+                <a class="nav-link" href="{% url 'movies_list' %}">
+                    <i class="bi bi-film"></i> Filmy
+                </a>
 
                 <div class="d-flex ms-auto">
                     {% if request.user.is_authenticated %}
-                    <div class="nav-link disabled">(Zalogowano jako: {{ request.user }})</div>
-                    {% if request.user.is_staff %}
-                    <a class="nav-link" href="{% url 'admin:index' %}">Administracja</a>
-                    {% endif %}
-                    <a class="nav-link" href="{% url 'logout' %}">Wyloguj się</a>
+                    <a class="nav-link" href="{% url 'user_profile' %}">
+                        <i class="bi bi-person-circle"></i>
+                        {{ request.user }}
+                    </a>
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <i class="bi bi-box-arrow-left"></i> Wyloguj się
+                    </a>
                     {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">Zaloguj się</a>
+                    <a class="nav-link" href="{% url 'login' %}">
+                        <i class="bi bi-box-arrow-in-right"></i> Zaloguj się
+                    </a>
                     {% endif %}
                 </div>
             </div>

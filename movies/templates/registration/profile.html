@@ -3,11 +3,10 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-<p>Witaj: {{ request.user }}</p>
-<p>Ostatnie logowanie {{ request.user.last_login }}</p>
+<p>Witaj {{ request.user }}!</p>
+<p>Ostatnie logowanie: {{ request.user.last_login }}</p>
 {% else %}
-<p>Nie zalogowano do filmoteki.</p>
-<a href="{% url 'login' %}">Zaloguj się</a>
+<p class="alert alert-warning">Nie zalogowano do Filmoteki</p>
+<a href="{% url 'login' %}" class="btn btn-primary">Zaloguj się</a>
 {% endif %}
-
-{% endblock content %}
+{% endblock %}
