@@ -3,27 +3,27 @@
 {% block content %}
 
 {% if form.errors %}
-<div class="alert alert-danger">
-    W formularzu pojawiły się błędy!
-</div>
+<div class="alert alert-danger">Wystąpiły błędy!</div>
 {% endif %}
 
-<form method="post">
+<form method="post" action="{% url 'user_signup' %}">
     {% csrf_token %}
 
-    {{ form.username.label_tag }}
-    {{ form.username }}
-    {{ form.username.errors }}
-    <hr>
-    {{ form.password1.label_tag }}
-    {{ form.password1 }}
-    {{ form.password1.errors }}
-    <hr>
-    {{ form.password2.label_tag }}
-    {{ form.password2 }}
-    {{ form.password2.errors }}
+    {% for field in form %}
+    <div class="m-3">
+        <label for="{{ field.id_for_label }}" class="form-label">
+            {{ field.label }}
+        </label>
+        <input name="{{ field.html_name }}" type="{{ field.widget_type }}"
+            class="form-control {% if field.errors %}is-invalid{% elif form.is_bound %}is-valid{% endif %}"
+            id="{{ field.id_for_label }}" value="{{ field.value|default_if_none:'' }}">
+        <div class="invalid-feedback">
+            {{ field.errors }}
+        </div>
+    </div>
+    {% endfor %}
 
-    <input class="btn btn-primary" type="submit" value="Zarejestruj się">
+    <input type="submit" class="btn btn-primary" value="Zarejestruj się">
 </form>
 
 {% endblock %}
