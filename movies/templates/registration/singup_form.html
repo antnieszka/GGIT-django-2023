@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    W formularzu pojawiły się błędy!
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    {{ form.username.errors }}
+    <hr>
+    {{ form.password1.label_tag }}
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+    <hr>
+    {{ form.password2.label_tag }}
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+
+    <input class="btn btn-primary" type="submit" value="Zarejestruj się">
+</form>
+
+{% endblock %}
