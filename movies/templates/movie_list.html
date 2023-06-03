@@ -6,7 +6,8 @@
 
 {% for movie in movies %}
 <p>
-    Film: "{{ movie }}"
+    Film: "{{ movie }}",
+    reżyser: {{ movie.director.first_name }} {{ movie.director.last_name }}
 </p>
 {% endfor %}
 
