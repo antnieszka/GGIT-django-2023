@@ -23,7 +23,7 @@ urlpatterns = [
     path("", views.hello_world, name="hello"),
     path("filmy/", views.MovieList.as_view(), name="movies_list"),
     path("filmy/create/", views.MovieCreate.as_view(), name="movies_create"),
-    path("filmy/<int:pk>/", views.MovieDetail.as_view(), name="movies_detail"),
+    path("filmy/<int:pk>/detail/", views.MovieDetail.as_view(), name="movies_detail"),
     path("filmy/<int:pk>/update/", views.MovieUpdate.as_view(), name="movies_update"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", views.profile_view, name="user_profile"),

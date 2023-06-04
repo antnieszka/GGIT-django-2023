@@ -6,11 +6,16 @@
 
 <a href="{% url 'movies_create' %}" class="btn btn-success">Dodaj nowy film</a>
 
-{% for movie in movie_list %}
-<div class="card">
+{% for movie in movies %}
+<div class="card m-2">
     <div class="card-body">
-        <h5 class="card-title">{{ movie.title }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ movie.director }}</h6>
+        <h5 class="card-title">{{movie.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+            {{ movie.director|default_if_none:"Brak reżysera" }}
+        </h6>
+        <p class="card-text">
+            {{ movie.short_description|truncatewords:20 }}
+        </p>
         <a href="{% url 'movies_detail' movie.pk %}" class="card-link">Szczegóły</a>
         <a href="{% url 'movies_update' movie.pk %}" class="card-link">Edycja</a>
     </div>

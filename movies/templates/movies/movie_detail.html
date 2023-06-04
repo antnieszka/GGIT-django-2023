@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Widok szczegółów filmu: {{ movie.title }}</h1>
+<h2>Szczegóły filmu: {{ movie.title }}</h2>
+<p>{{ movie.short_description }}</p>
+<a href="{% url 'movies_list' %}" class="btn btn-primary">Powrót do listy</a>
 {% endblock %}
