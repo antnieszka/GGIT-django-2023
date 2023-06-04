@@ -21,7 +21,10 @@ from movies import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.hello_world, name="hello"),
-    path("filmy/", views.list_movies, name="movies_list"),
+    path("filmy/", views.MovieList.as_view(), name="movies_list"),
+    path("filmy/create/", views.MovieCreate.as_view(), name="movies_create"),
+    path("filmy/<int:pk>/", views.MovieDetail.as_view(), name="movies_detail"),
+    path("filmy/<int:pk>/update/", views.MovieUpdate.as_view(), name="movies_update"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", views.profile_view, name="user_profile"),
     path("accounts/signup/", views.user_signup, name="user_signup"),

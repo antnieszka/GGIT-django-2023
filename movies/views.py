@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 from movies.models import Movie
 
@@ -17,9 +20,6 @@ def list_movies(request):
 
 def profile_view(request):
     return render(request, template_name="registration/profile.html")
-
-
-from django.contrib.auth.forms import UserCreationForm
 
 
 def user_signup(request):
@@ -43,3 +43,34 @@ def user_signup(request):
         template_name="registration/singup_form.html",
         context=context,
     )
+
+
+class MovieList(ListView):
+    model = Movie
+    # template_name = "movies/movie_list.html"
+    # context_object_name = "movie_list"
+
+
+class MovieDetail(DetailView):
+    model = Movie
+    # context_object_name = "movie"
+
+
+class MovieUpdate(LoginRequiredMixin, UpdateView):
+    model = Movie
+    fields = ("title", "short_description")
+    # template_name = "movies/movie_update.html"
+    extra_context = {"title": "Edycja filmu"}
+
+    def get_success_url(self):
+        return reverse("movies_detail", args=[self.object.pk])
+
+
+class MovieCreate(LoginRequiredMixin, CreateView):
+    model = Movie
+    fields = ("title", "short_description", "published_at", "rating")
+    # template_name = "movies/movie_create.html"
+    extra_context = {"title": "Dodawanie nowego filmu"}
+
+    def get_success_url(self):
+        return reverse("movies_detail", args=[self.object.pk])
